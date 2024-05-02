@@ -10,7 +10,7 @@
 - Rosso altrimenti
 
 # M3
-- Creo una variabile "Points" 
+- Creo una variabile "points" 
 - Ad ogni cella non bomba cliccata faccio un incremento di tale variabile e lo stampo in console.
 
 # M4
