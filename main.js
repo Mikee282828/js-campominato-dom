@@ -5,37 +5,45 @@ let gameMode = document.getElementById("gameMode");
 avvia.addEventListener("click",function(){
     let bombs = [];
     bombGenerator(bombs,16,100);
-    
     //reset
     console.log("Reset, le bombe sono:",bombs);
     griglia.innerHTML="";
-
+    //gamemode selection
+    //easy mode
     if(gameMode.value=="Easy"){
         console.log("La modalità selezionata è: Easy");
-        gridGenerator("square100",100);
-    }else if(gameMode.value=="Medium"){
+        gridGenerator("square100",100,bombs);
+    }
+    //medium mode
+    else if(gameMode.value=="Medium"){
         console.log("La modalità selezionata è: Medium");
-        gridGenerator("square81",81);
-    }else if(gameMode.value=="Hard"){
+        gridGenerator("square81",81,bombs);
+    }
+    //hard mode
+    else if(gameMode.value=="Hard"){
         console.log("La modalità selezionata è: Hard");
-        gridGenerator("square49",49);
+        gridGenerator("square49",49,bombs);
     }
 })
 
-function createSquare(classe,nIterazione){
+function createSquare(classe,nIterazione,bombe){
     let element = document.createElement("div");
     element.classList.add(classe);
-    // click
+    //click
     element.addEventListener("click",function(){
-        element.classList.toggle("bkg_azzurro");
+        if(bombe.includes(nIterazione)){
+            element.classList.add("bkg_rosso")
+        }else{
+            element.classList.add("bkg_azzurro");
+        }
         console.log(nIterazione);
     })
     return element;
 }
-function gridGenerator(classe,nSquare){
+
+function gridGenerator(classe,nSquare,bombe){
     for(let i = 1; i <= nSquare; i++){
-        // creo elemento e lo metto all'interno della griglia
-        let elemento = createSquare(classe,i);
+        let elemento = createSquare(classe,i,bombe);
         griglia.append(elemento);
     }
 }
