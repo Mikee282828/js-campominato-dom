@@ -4,16 +4,12 @@ let gameMode = document.getElementById("gameMode");
 
 avvia.addEventListener("click",function(){
     let bombs = [];
-    while(bombs.length<16){
-        let bomb = randomIntGenerator(100);
-        if(bombs.includes(bomb)){
-        }else{
-            bombs.push(bomb);
-        }
-    }
+    bombGenerator(bombs,16,100);
     
+    //reset
     console.log("Reset, le bombe sono:",bombs);
     griglia.innerHTML="";
+
     if(gameMode.value=="Easy"){
         console.log("La modalità selezionata è: Easy");
         gridGenerator("square100",100);
@@ -43,7 +39,14 @@ function gridGenerator(classe,nSquare){
         griglia.append(elemento);
     }
 }
-// funzione che genera numeri casuali da 1 fino a range
-function randomIntGenerator(range){
-    return Math.ceil(Math.random()*range);
+
+// funzione che genera le bombe
+function bombGenerator(listName,length,range){
+    while(listName.length<length){
+        let bomb = Math.ceil(Math.random()*range);
+        if(listName.includes(bomb)){
+        }else{
+            listName.push(bomb);
+        }
+    }
 }
