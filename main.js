@@ -2,9 +2,11 @@ let griglia = document.getElementById("griglia");
 let avvia = document.getElementById("avvia");
 let gameMode = document.getElementById("gameMode");
 let points = 0;
+let match = true;
 avvia.addEventListener("click",function(){
     //reset
     points = 0;
+    match = true;
     let bombs = [];
     console.log("Reset");
     griglia.innerHTML="";
@@ -38,15 +40,21 @@ function gridGenerator(classe,nSquare,bombe){
 
 function createSquare(classe,nIterazione,bombe){
     let element = document.createElement("div");
+    let clicked = false;
     element.classList.add(classe);
     //click
     element.addEventListener("click",function(){
-        if(bombe.includes(nIterazione)){
+        if(bombe.includes(nIterazione) && match == true && clicked == false){
             element.classList.add("bkg_rosso");
-        }else{
+            console.log(points);
+            console.log("You lost")
+            match = false;
+            clicked = true;
+        }else if(match == true && clicked == false){
             element.classList.add("bkg_azzurro");
             points +=100;
             console.log(points);
+            clicked = true;
         }
     })
     return element;
