@@ -50,7 +50,20 @@ function createSquare(classe, nIterazione, bombe, nSquare) {
             console.log("You lost!",points);
             match = false;
             clicked = true;
-            alert("You lost!");
+
+            let celle = document.getElementsByClassName("square100");
+            let celle1 = document.getElementsByClassName("square81");
+            let celle2 = document.getElementsByClassName("square49");
+
+            for(let i = 0;i<bombe.length;i++){
+                if(classe == "square100"){
+                    celle[bombe[i]-1].classList.add("bkg_rosso");
+                }else if(classe == "square81"){
+                    celle1[bombe[i]-1].classList.add("bkg_rosso");
+                }else if(classe == "square49"){
+                    celle2[bombe[i]-1].classList.add("bkg_rosso");
+                } 
+            }
         } else if (match == true && clicked == false && (points / 100) == (nSquare - 17)) {
             console.log("Congratz, You Won!",points);
             element.classList.add("bkg_azzurro");
